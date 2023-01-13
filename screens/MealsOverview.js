@@ -10,7 +10,7 @@ function MealsOverview({ route }) {
   });
 
   function renderMealItem(itemData) {
-    return <MealItem title={itemData.item.title} />;
+    return <MealItem meal={itemData.item} />;
   }
 
   return (
