@@ -24,7 +24,7 @@ function MealsOverview({ route, navigation }) {
 
   function navigateToMealRecipe(id) {
     navigation.navigate("MealRecipe", {
-      id: id,
+      mealId: id,
     });
   }
 

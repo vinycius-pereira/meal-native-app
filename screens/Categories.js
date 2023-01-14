@@ -9,7 +9,6 @@ function Categories({ navigation }) {
         categoryId: item.id,
       });
     }
-
     return (
       <CategoryItem
         onPress={pressHandler}
