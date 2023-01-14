@@ -89,8 +89,6 @@ function MealItem({ meal }) {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     margin: 16,
     paddingBottom: 8,
     backgroundColor: "#efefef",
@@ -101,8 +99,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    width: 325,
-    height: 325,
+    width: "100%",
+    height: 300,
     borderRadius: 12,
     marginBottom: 16,
   },
@@ -110,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 6,
-    paddingHorizontal: 8,
+    marginHorizontal: 10,
   },
   secondaryTitle: {
     fontSize: 20,
@@ -134,7 +132,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 8,
     paddingVertical: 4,
-    margin: 6,
+    marginHorizontal: 10,
+    marginVertical: 8,
   },
   listContainer: {
     borderWidth: 1,
