@@ -8,7 +8,7 @@ import {
   Pressable,
 } from "react-native";
 
-function MealItem({ meal }) {
+function MealItem({ meal, onPress }) {
   const {
     affordability,
     title,
@@ -18,6 +18,7 @@ function MealItem({ meal }) {
     imageUrl,
     steps,
   } = meal;
+
   function renderMealIngredients({ item }) {
     return (
       <View>
@@ -47,42 +48,45 @@ function MealItem({ meal }) {
   }
 
   return (
-    <View style={styles.root}>
-      <Pressable
-        android_ripple={{ color: "#ccc", borderless: true }}
-        style={({ pressed }) => pressed && styles.pressed}
-      >
-        <ScrollView style={styles.screen}>
-          <Image style={styles.image} source={{ uri: imageUrl }} />
-          <Text style={styles.title}>{title}</Text>
-          <View style={styles.container}>
-            <Text style={styles.pill}>{mealPrice()}</Text>
-            <View style={styles.innerContainer}>
-              <Text style={styles.pill}>{`${duration} min`}</Text>
-              <Text style={styles.pill}>{complexity}</Text>
+    <>
+      <View style={styles.root}>
+        <Pressable
+          android_ripple={{ color: "#ccc", borderless: true }}
+          style={({ pressed }) => pressed && styles.pressed}
+          onPress={onPress}
+        >
+          <ScrollView style={styles.screen}>
+            <Image style={styles.image} source={{ uri: imageUrl }} />
+            <Text style={styles.title}>{title}</Text>
+            <View style={styles.container}>
+              <Text style={styles.pill}>{mealPrice()}</Text>
+              <View style={styles.innerContainer}>
+                <Text style={styles.pill}>{`${duration} min`}</Text>
+                <Text style={styles.pill}>{complexity}</Text>
+              </View>
             </View>
-          </View>
-          {/*<View>*/}
-          {/*  <Text style={styles.secondaryTitle}>Ingredients</Text>*/}
-          {/*  <FlatList*/}
-          {/*    style={styles.listContainer}*/}
-          {/*    data={ingredients}*/}
-          {/*    renderItem={renderMealIngredients}*/}
-          {/*    ItemSeparatorComponent={() => <View style={styles.separator} />}*/}
-          {/*    keyExtractor={(item) => item}*/}
-          {/*  />*/}
-          {/*  <Text style={styles.secondaryTitle}>Steps</Text>*/}
-          {/*  <FlatList*/}
-          {/*    style={styles.listContainer}*/}
-          {/*    data={steps}*/}
-          {/*    renderItem={renderMealSteps}*/}
-          {/*    ItemSeparatorComponent={() => <View style={styles.separator} />}*/}
-          {/*    keyExtractor={(item) => item}*/}
-          {/*  />*/}
-          {/*</View>*/}
-        </ScrollView>
-      </Pressable>
-    </View>
+            {/*<View>*/}
+            {/*  <Text style={styles.secondaryTitle}>Ingredients</Text>*/}
+            {/*  <FlatList*/}
+            {/*    style={styles.listContainer}*/}
+            {/*    data={ingredients}*/}
+            {/*    renderItem={renderMealIngredients}*/}
+            {/*    ItemSeparatorComponent={() => <View style={styles.separator} />}*/}
+            {/*    keyExtractor={(item) => item}*/}
+            {/*  />*/}
+            {/*  <Text style={styles.secondaryTitle}>Steps</Text>*/}
+            {/*  <FlatList*/}
+            {/*    style={styles.listContainer}*/}
+            {/*    data={steps}*/}
+            {/*    renderItem={renderMealSteps}*/}
+            {/*    ItemSeparatorComponent={() => <View style={styles.separator} />}*/}
+            {/*    keyExtractor={(item) => item}*/}
+            {/*  />*/}
+            {/*</View>*/}
+          </ScrollView>
+        </Pressable>
+      </View>
+    </>
   );
 }
 

@@ -2,6 +2,8 @@ import { MEALS, CATEGORIES } from "../data/dummy-data";
 import { FlatList, View, StyleSheet } from "react-native";
 import MealItem from "../components/MealItem";
 import { useEffect } from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MealRecipe from "./MealRecipe";
 
 function MealsOverview({ route, navigation }) {
   const { categoryId } = route.params;
@@ -20,18 +22,33 @@ function MealsOverview({ route, navigation }) {
     return meal.categoryIds.indexOf(categoryId) >= 0;
   });
 
+  function navigateToMealRecipe(id) {
+    navigation.navigate("MealRecipe", {
+      id: id,
+    });
+  }
+
   function renderMealItem(itemData) {
-    return <MealItem meal={itemData.item} />;
+    return (
+      <>
+        <MealItem
+          meal={itemData.item}
+          onPress={navigateToMealRecipe.bind(this, itemData.item.id)}
+        />
+      </>
+    );
   }
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={displayMeal}
-        renderItem={renderMealItem}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
+    <>
+      <View style={styles.container}>
+        <FlatList
+          data={displayMeal}
+          renderItem={renderMealItem}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+    </>
   );
 }
 
