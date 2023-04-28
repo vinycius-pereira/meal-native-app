@@ -3,11 +3,27 @@ import { MEALS } from "../data/dummy-data";
 import MealCard from "../components/MealCard";
 import Ingredients from "../components/MealsDetails/Ingredients";
 import Steps from "../components/MealsDetails/Steps";
+import { useLayoutEffect } from "react";
+import Button from "../components/Button";
 
 function MealRecipe({ route, navigation }) {
   const { mealId } = route.params;
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <Button
+            icon="person"
+            color="white"
+            onPress={() => console.log("Pressed")}
+          />
+        );
+      },
+    });
+  }, [navigation]);
 
   const {
     ingredients,
