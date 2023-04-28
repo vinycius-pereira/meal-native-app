@@ -12,15 +12,6 @@ import MealCard from "./MealCard";
 function MealItem({ meal, onPress }) {
   const { affordability, title, duration, complexity, imageUrl } = meal;
 
-  function mealPrice() {
-    if (affordability === "luxurious") {
-      return "$$$";
-    } else if (affordability === "pricey") {
-      return "$$";
-    } else {
-      return "$";
-    }
-  }
 
   return (
     <>
