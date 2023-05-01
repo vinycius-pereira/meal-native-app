@@ -16,7 +16,7 @@ function MealRecipe({ route, navigation }) {
       headerRight: () => {
         return (
           <Button
-            icon="person"
+            icon="star"
             color="white"
             onPress={() => console.log("Pressed")}
           />
