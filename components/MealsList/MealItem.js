@@ -1,16 +1,21 @@
 import {
   StyleSheet,
   View,
-  Image,
-  Text,
-  FlatList,
   ScrollView,
   Pressable,
 } from "react-native";
-import MealCard from "./MealCard";
+import MealCard from "../MealCard";
+import {useNavigation} from "@react-navigation/native";
 
-function MealItem({ meal, onPress }) {
-  const { affordability, title, duration, complexity, imageUrl } = meal;
+function MealItem({ meal }) {
+  const { id, affordability, title, duration, complexity, imageUrl } = meal;
+  const navigation = useNavigation()
+
+  function navigateToMealRecipe() {
+    navigation.navigate("MealRecipe", {
+      mealId: id,
+    });
+  }
 
 
   return (
@@ -19,7 +24,7 @@ function MealItem({ meal, onPress }) {
         <Pressable
           android_ripple={{ color: "#ccc", borderless: true }}
           style={({ pressed }) => pressed && styles.pressed}
-          onPress={onPress}
+          onPress={navigateToMealRecipe}
         >
           <ScrollView style={styles.screen}>
             <MealCard

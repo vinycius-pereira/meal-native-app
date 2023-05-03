@@ -1,15 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
+import {Fragment} from "react";
 
 function Steps({ steps }) {
   return (
     <View style={styles.listContainer}>
       {steps.map((step, index) => (
-        <>
-          <View key={Math.random()}>
+        <Fragment key={index}>
+          <View>
             <Text style={styles.title}>{`${index + 1}. ${step}`}</Text>
           </View>
           <View style={styles.separator} />
-        </>
+        </Fragment>
       ))}
     </View>
   );

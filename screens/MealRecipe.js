@@ -3,27 +3,41 @@ import { MEALS } from "../data/dummy-data";
 import MealCard from "../components/MealCard";
 import Ingredients from "../components/MealsDetails/Ingredients";
 import Steps from "../components/MealsDetails/Steps";
-import { useLayoutEffect } from "react";
+import {useContext, useLayoutEffect, useState} from "react";
 import Button from "../components/Button";
+import {FavoritesContext} from "../store/context/favorites-context";
+import meal from "../models/meal";
 
 function MealRecipe({ route, navigation }) {
+  const favoriteMealsCtx = useContext(FavoritesContext);
   const { mealId } = route.params;
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  console.log("MEALITEM -> ", selectedMeal)
+
+  const mealsIsFavorite = favoriteMealsCtx.ids.includes(mealId)
+
+  const changeFavoriteStatusHandler = () => {
+    if(mealsIsFavorite){
+      favoriteMealsCtx.removeFavorite(mealId)
+    } else {
+      favoriteMealsCtx.addFavorite(mealId)
+    }
+  }
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
         return (
           <Button
-            icon="star"
+            icon={mealsIsFavorite ? "star" : "star-outline"}
             color="white"
-            onPress={() => console.log("Pressed")}
+            onPress={changeFavoriteStatusHandler}
           />
         );
       },
     });
-  }, [navigation]);
+  }, [navigation, changeFavoriteStatusHandler]);
 
   const {
     ingredients,
@@ -34,6 +48,8 @@ function MealRecipe({ route, navigation }) {
     complexity,
     affordability,
   } = selectedMeal;
+
+  console.log("selectedMeal => ",selectedMeal)
 
   return (
     <View style={styles.root}>
